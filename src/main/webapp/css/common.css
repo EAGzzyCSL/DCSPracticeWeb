@@ -1,0 +1,48 @@
+body {
+    background-color: rgb(235, 235, 235);
+}
+
+.navbar-fixed-top {
+    padding: 10px;
+    background-color: white;
+}
+
+.navbar-fixed-top a {
+    text-decoration: none;
+}
+
+.container {
+    margin-top: 100px;
+}
+
+.nav-tabs li {
+    width: 140px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.tab-content {
+    padding: 15px;
+    background-color: white;
+}
+
+.alert-info {
+    height: 40px;
+    line-height: 10px;
+    font-size: 15px;
+}
+
+.node {
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.node circle {
+    fill: steelblue;
+}
+
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+}

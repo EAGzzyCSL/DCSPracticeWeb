@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>交互式恶意代码特征查询系统</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/common.js"></script>
+</head>
+
+<body>
+<div class="row navbar-fixed-top">
+    <div class="col-xs-3">
+        <a href="index.html"><h4 class="text-primary text-center">交互式恶意代码特征查询系统</h4></a>
+    </div>
+
+    <div id="searchBar" class="col-xs-5 input-group"></div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="nav nav-tabs">
+                <li class="active"><a class="text-center" href="#result" data-toggle="tab">检测结果</a></li>
+                <li><a class="text-center" href="#static" data-toggle="tab">静态信息</a></li>
+                <li><a class="text-center" href="#dynamic" data-toggle="tab">行为分析</a></li>
+                <li><a class="text-center" href="#internet" data-toggle="tab">网络活动</a></li>
+                <li><a class="text-center" href="#tree" data-toggle="tab">树状图</a></li>
+            </ul>
+
+            <div class="tab-content" id="tab_content">
+                <div class="tab-pane fade in active" id="result">
+
+                </div>
+
+                <div class="tab-pane fade" id="static">
+
+                </div>
+
+                <div class="tab-pane fade" id="dynamic">
+
+                </div>
+
+                <div class="tab-pane fade" id="internet">
+
+                </div>
+
+                <div class="tab-pane fade" id="tree">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal"></div>
+</body>
+</html>
