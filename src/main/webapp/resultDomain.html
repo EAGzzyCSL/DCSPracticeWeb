@@ -8,7 +8,9 @@
     <link href="css/common.css" rel="stylesheet">
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/d3.min.js"></script>
     <script src="js/common.js"></script>
+    <script src="js/resultDomain.js"></script>
 </head>
 
 <body>
@@ -23,30 +25,104 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
+            <div class="well text-center" id="title"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
             <ul class="nav nav-tabs">
-                <li class="active"><a class="text-center" href="#ip" data-toggle="tab">IP分析</a></li>
+                <li class="active"><a class="text-center" href="#threat" data-toggle="tab">威胁情报</a></li>
+                <li><a class="text-center" href="#ip" data-toggle="tab">IP分析</a></li>
                 <li><a class="text-center" href="#sub" data-toggle="tab">子域名</a></li>
                 <li><a class="text-center" href="#whois" data-toggle="tab">Whois</a></li>
                 <li><a class="text-center" href="#tree" data-toggle="tab">树状图</a></li>
             </ul>
 
             <div class="tab-content" id="tab_content">
-                <div class="tab-pane fade in active" id="ip">
+                <div class="tab-pane fade in active" id="threat">
+                    <div class="alert alert-info">通讯样本</div>
+                    <table class="table table-striped">
+                        <tbody id="threat_sample"></tbody>
+                    </table>
+                </div>
+
+                <div class="tab-pane fade" id="ip">
                     <div class="alert alert-info">IP地址</div>
+                    <div class="row info-item" style="margin-bottom: 10px">
+                        <div class="col-xs-2 info-title">IP地址</div>
+                        <a class="col-xs-3 col-xs-offset-1" id="ip_address" target="_blank"></a>
+                    </div>
+
                     <div class="alert alert-info">历史解析记录</div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>时间</th>
+                            <th>IP</th>
+                        </tr>
+                        </thead>
+                        <tbody id="history_ip"></tbody>
+                    </table>
+
+                    <div class="alert alert-info">指向同一IP的域名列表</div>
+                    <table class="table table-striped">
+                        <tbody id="same_ip_domain"></tbody>
+                    </table>
                 </div>
 
                 <div class="tab-pane fade" id="sub">
-
+                    <div class="alert alert-info">子域名</div>
+                    <table class="table table-striped">
+                        <tbody id="sub_domain"></tbody>
+                    </table>
                 </div>
 
                 <div class="tab-pane fade" id="whois">
-
+                    <div class="alert alert-info">当前注册信息</div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">注册者</div>
+                        <div class="col-xs-3 info-content" id="d_registrar"></div>
+                    </div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">注册机构</div>
+                        <div class="col-xs-3 info-content" id="d_ra"></div>
+                    </div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">邮箱</div>
+                        <div class="col-xs-3 info-content" id="d_mailbox"></div>
+                    </div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">地址</div>
+                        <div class="col-xs-3 info-content" id="d_address"></div>
+                    </div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">电话</div>
+                        <div class="col-xs-3 info-content" id="d_phone"></div>
+                    </div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">注册时间</div>
+                        <div class="col-xs-3 info-content" id="d_rt"></div>
+                    </div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">过期时间</div>
+                        <div class="col-xs-3 info-content" id="d_ot"></div>
+                    </div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">更新时间</div>
+                        <div class="col-xs-3 info-content" id="d_ut"></div>
+                    </div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">域名服务商</div>
+                        <div class="col-xs-3 info-content" id="d_sp"></div>
+                    </div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">域名服务器</div>
+                        <div class="col-xs-3 info-content" id="d_s"></div>
+                    </div>
                 </div>
 
-                <div class="tab-pane fade" id="tree">
-
-                </div>
+                <div class="tab-pane fade" id="tree"></div>
             </div>
         </div>
     </div>

@@ -8,7 +8,9 @@
     <link href="css/common.css" rel="stylesheet">
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/d3.min.js"></script>
     <script src="js/common.js"></script>
+    <script src="js/resultFile.js"></script>
 </head>
 
 <body>
@@ -23,6 +25,12 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
+            <div class="well text-center" id="title"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
             <ul class="nav nav-tabs">
                 <li class="active"><a class="text-center" href="#result" data-toggle="tab">检测结果</a></li>
                 <li><a class="text-center" href="#static" data-toggle="tab">静态信息</a></li>
@@ -33,24 +41,98 @@
 
             <div class="tab-content" id="tab_content">
                 <div class="tab-pane fade in active" id="result">
-
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>反病毒软件</th>
+                            <th>检测结果</th>
+                        </tr>
+                        </thead>
+                        <tbody id="scan_result"></tbody>
+                    </table>
                 </div>
 
                 <div class="tab-pane fade" id="static">
+                    <div class="alert alert-info">文件识别</div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">文件类型</div>
+                        <div class="col-xs-3 info-content" id="s_ft"></div>
+                    </div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">文件大小</div>
+                        <div class="col-xs-3 info-content" id="s_size"></div>
+                    </div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">MD5</div>
+                        <div class="col-xs-3 info-content" id="s_md5"></div>
+                    </div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">SHA1</div>
+                        <div class="col-xs-3 info-content" id="s_sha1"></div>
+                    </div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">SHA256</div>
+                        <div class="col-xs-3 info-content" id="s_sha256"></div>
+                    </div>
+                    <div class="row info-item">
+                        <div class="col-xs-2 info-title">SHA512</div>
+                        <div class="col-xs-3 info-content" id="s_sha512"></div>
+                    </div>
+                    <div class="row info-item" style="margin-bottom: 10px">
+                        <div class="col-xs-2 info-title">ssdeep</div>
+                        <div class="col-xs-3 info-content" id="s_ssdeep"></div>
+                    </div>
 
+                    <div class="alert alert-info">PE节信息</div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Virtual Address</th>
+                            <th>Virtual Size</th>
+                            <th>Raw Address</th>
+                            <th>Entropy</th>
+                        </tr>
+                        </thead>
+                        <tbody id="pe_section"></tbody>
+                    </table>
+
+                    <div class="alert alert-info">导入表</div>
+                    <table class="table table-striped">
+                        <tbody id="import_dll"></tbody>
+                    </table>
                 </div>
 
                 <div class="tab-pane fade" id="dynamic">
+                    <div class="alert alert-info">文件操作</div>
+                    <table class="table table-striped">
+                        <tbody id="op_file"></tbody>
+                    </table>
 
+                    <div class="alert alert-info">注册表操作</div>
+                    <table class="table table-striped">
+                        <tbody id="op_registry"></tbody>
+                    </table>
+
+                    <div class="alert alert-info">互斥体操作</div>
+                    <table class="table table-striped">
+                        <tbody id="op_mutex"></tbody>
+                    </table>
                 </div>
 
                 <div class="tab-pane fade" id="internet">
-
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>域名</th>
+                            <th>IP</th>
+                        </tr>
+                        </thead>
+                        <tbody id="internet_activity"></tbody>
+                    </table>
                 </div>
 
-                <div class="tab-pane fade" id="tree">
-
-                </div>
+                <div class="tab-pane fade" id="tree"></div>
             </div>
         </div>
     </div>

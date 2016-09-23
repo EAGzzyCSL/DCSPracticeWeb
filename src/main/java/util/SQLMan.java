@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public final class SQLMan {
-    private static final String DB_url = "jdbc:mysql://localhost:3306/MaliciousCode?useUnicode=true&characterEncoding=UTF-8";
+    private static final String DB_url = "jdbc:mysql://localhost:3306/MaliciousCode?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String DB_username = "MaliciousCode";
     private static final String DB_password = "MaliciousCode";
     private static Connection con;

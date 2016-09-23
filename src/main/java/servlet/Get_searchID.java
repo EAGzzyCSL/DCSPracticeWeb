@@ -5,8 +5,6 @@ package servlet;
  */
 import data.ID;
 import data.MyBean;
-import data.Person;
-import data.Sample;
 import util.MyArrayList;
 import util.SQLMan;
 

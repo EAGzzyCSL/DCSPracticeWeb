@@ -25,19 +25,45 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
+            <div class="well text-center" id="title"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
             <ul class="nav nav-tabs">
-                <li class="active"><a class="text-center" href="#ip" data-toggle="tab">IP反查</a></li>
+                <li class="active"><a class="text-center" href="#threat" data-toggle="tab">威胁情报</a></li>
+                <li><a class="text-center" href="#ip" data-toggle="tab">IP反查</a></li>
                 <li><a class="text-center" href="#tree" data-toggle="tab">树状图</a></li>
             </ul>
 
             <div class="tab-content" id="tab_content">
-                <div class="tab-pane fade in active" id="ip">
-
+                <div class="tab-pane fade in active" id="threat">
+                    <div class="alert alert-info">通讯样本</div>
+                    <table class="table table-striped">
+                        <tbody id="threat_sample"></tbody>
+                    </table>
                 </div>
 
-                <div class="tab-pane fade" id="tree">
+                <div class="tab-pane fade" id="ip">
+                    <div class="alert alert-info">指向该IP的域名</div>
+                    <table class="table table-striped">
+                        <tbody id="same_ip_domain"></tbody>
+                    </table>
 
+                    <div class="alert alert-info">历史域名记录</div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>时间</th>
+                            <th>域名</th>
+                        </tr>
+                        </thead>
+                        <tbody id="history_domain"></tbody>
+                    </table>
                 </div>
+
+                <div class="tab-pane fade" id="tree"></div>
             </div>
         </div>
     </div>

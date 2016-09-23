@@ -1,9 +1,9 @@
-var BASE_URL = "http://123.206.84.137/ApplicationPraticeCode/php/receive.php?PostType=";
+var BASE_URL = "http://localhost:8080/dscPractice/";
 
 $.post = function (a, b, c) {
     $.ajax({
         url: a,
-        type: 'post',
+        type: 'get',
         data: typeof(b) == 'object' ? b : {},
         dataType: 'json',
         cache: false,
