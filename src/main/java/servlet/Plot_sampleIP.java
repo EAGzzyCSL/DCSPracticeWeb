@@ -22,12 +22,13 @@ public class Plot_sampleIP extends MyServlet{
     public static MyArrayList<Name> plot_sampleIP(String str) {
         MyArrayList<Name> num = null;
         String sql =null;
-        sql="select distinct IP_Info as name from newsd where S_ID=?";
+        sql="select distinct IP_Info as name from newsd where S_ID=? and IP_Info<>?";
 
         try {
             PreparedStatement preS = SQLMan.getConnection().prepareStatement(
                     sql);
             preS.setString(1, str);
+            preS.setString(2,"");
             ResultSet rs = preS.executeQuery();
 
             num = (MyArrayList<Name>) MyBean.newInstanceArray(rs, Name.class);
