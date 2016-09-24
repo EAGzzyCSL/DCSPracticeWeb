@@ -2,6 +2,8 @@ package servlet;
 
 import util.SQLMan;
 
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,8 +11,17 @@ import java.sql.SQLException;
 /**
  * Created by 红印 on 2016/9/23.
  */
-public class Plot_IP {
-    public static String plot_ip(int id){
+@WebServlet("/plot_ip")
+public class Plot_IP extends MyServlet{
+
+    protected String doMyGet(HttpServletRequest req) {
+        String id="";
+        if(req.getParameter("ID")!=null)
+            id = req.getParameter("ID");
+        return plot_ip(id);
+    }
+
+    public static String plot_ip(String id){
         String str="{\"type\":\"2\",\"name\":\"";
         String ip_info="";
         String sql_domainIP = null;
@@ -23,7 +34,7 @@ public class Plot_IP {
         try {
             PreparedStatement preS = SQLMan.getConnection().prepareStatement(
                     sql_domainIP);
-            preS.setInt(1, id);
+            preS.setString(1, id);
             ResultSet rs = preS.executeQuery();
             if(rs.next()){
                 ip_id=rs.getString("IP_ID");

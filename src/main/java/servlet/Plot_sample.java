@@ -2,6 +2,8 @@ package servlet;
 
 import util.SQLMan;
 
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,8 +11,17 @@ import java.sql.SQLException;
 /**
  * Created by 红印 on 2016/9/23.
  */
-public class Plot_sample {
-    public static String plot_sample(int id){
+@WebServlet("/plot_sample")
+public class Plot_sample extends MyServlet{
+
+    protected String doMyGet(HttpServletRequest req) {
+        String id="";
+        if(req.getParameter("ID")!=null)
+            id = req.getParameter("ID");
+        return plot_sample(id);
+    }
+
+    public static String plot_sample(String id){
         String str="{\"type\":\"3\",\"name\":\"";
         String sql_domainIP = null;
         String str1="";
@@ -18,20 +29,19 @@ public class Plot_sample {
         String s_info="";
         String ww="";
         String[] string=null;
-        String s_id="";
+
         sql_domainIP = "SELECT S_Sha256 FROM sample where S_ID=?";
         try {
             PreparedStatement preS = SQLMan.getConnection().prepareStatement(
                     sql_domainIP);
-            preS.setInt(1, id);
+            preS.setString(1, id);
             ResultSet rs = preS.executeQuery();
             if(rs.next()){
                 s_info=rs.getString("S_Sha256");
             }
             preS.close();
             //提取信息
-            s_id=id+"";
-            str1 = Plot_sampleDomain.plot_sampleDomain(s_id).toJson();
+            str1 = Plot_sampleDomain.plot_sampleDomain(id).toJson();
             if(str1.equals("[]")){
                 str1="";
             }else{
@@ -46,7 +56,7 @@ public class Plot_sample {
                 str1=ww;
             }
 
-            str2=Plot_sampleIP.plot_sampleIP(s_id).toJson();
+            str2=Plot_sampleIP.plot_sampleIP(id).toJson();
             if(str2.equals("[]")){
                 str2="";
             }else{

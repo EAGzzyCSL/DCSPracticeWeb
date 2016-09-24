@@ -2,6 +2,8 @@ package servlet;
 
 import util.SQLMan;
 
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,8 +11,17 @@ import java.sql.SQLException;
 /**
  * Created by 红印 on 2016/9/23.
  */
-public class Plot_domain {
-    public static String plot_domain(int id){
+@WebServlet("/plot_domain")
+public class Plot_domain extends MyServlet{
+
+    protected String doMyGet(HttpServletRequest req) {
+        String id="";
+        if(req.getParameter("ID")!=null)
+            id = req.getParameter("ID");
+        return plot_domain(id);
+    }
+
+    public static String plot_domain(String id){
         String str="{\"type\":\"1\",\"name\":\"";
         String d_name="";
         String m_info="";
@@ -31,7 +42,7 @@ public class Plot_domain {
         try {
             PreparedStatement preS = SQLMan.getConnection().prepareStatement(
                     sql_domainIP);
-            preS.setInt(1, id);
+            preS.setString(1, id);
             ResultSet rs = preS.executeQuery();
             if(rs.next()){
                 d_id=rs.getString("D_ID");
@@ -40,7 +51,7 @@ public class Plot_domain {
                 r_info=rs.getString("D_Registrar");
                 sql_domainIP = "SELECT IP_ID FROM di where D_ID=? ORDER by DI_Time DESC limit 1";
                 preS = SQLMan.getConnection().prepareStatement(sql_domainIP);
-                preS.setInt(1, id);
+                preS.setString(1, id);
                 rs=preS.executeQuery();
                 if(rs.next())
                 ip_id=rs.getInt("IP_ID");
