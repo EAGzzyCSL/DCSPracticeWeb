@@ -13,7 +13,7 @@ import java.sql.SQLException;
 /**
  * Created by 红印 on 2016/9/22.
  */
-@WebServlet("/plot_sampleDomain")
+@WebServlet("/plot_sampleIP")
 public class Plot_sampleIP extends MyServlet{
     protected String doMyGet(HttpServletRequest req) {
 
