@@ -159,7 +159,8 @@ public class Plot_domain extends MyServlet{
             if(r_info.equals("")){
 
             }else{
-                str=str+",{\"type\":\"4\",\"name\":\""+r_info+"\"";
+                if(m_info.equals(""))str=str+"{\"type\":\"4\",\"name\":\""+r_info+"\"";
+                else str=str+",{\"type\":\"4\",\"name\":\""+r_info+"\"";
                 if(str2.equals("")){
                     str=str+"}";
                 }else{
@@ -167,21 +168,23 @@ public class Plot_domain extends MyServlet{
                 }
             }
 
+//            if(ip_info.equals("")){
+//
+//            }else{
+//                if(m_info.equals("") && r_info.equals(""))str=str+"{\"type\":\"2\",\"name\":\""+ip_info+"\"";
+//                else str=str+",{\"type\":\"2\",\"name\":\""+ip_info+"\"";
+//                if(str2.equals("")){
+//                    str=str+"}";
+//                }else{
+//                    str=str+",\"children\":"+str3+"}";
+//                }
+//            }
+
             if(ip_info.equals("")){
 
             }else{
-                str=str+",{\"type\":\"2\",\"name\":\""+ip_info+"\"";
-                if(str2.equals("")){
-                    str=str+"}";
-                }else{
-                    str=str+",\"children\":"+str3+"}";
-                }
-            }
-
-            if(ip_info.equals("")){
-
-            }else{
-                str=str+",{\"type\":\"2\",\"name\":\""+ip_info+"\"";
+                if(m_info.equals("") && r_info.equals(""))str=str+"{\"type\":\"2\",\"name\":\""+ip_info+"\"";
+                else str=str+",{\"type\":\"2\",\"name\":\""+ip_info+"\"";
                 if(str3.equals("")){
                     if(str4.equals("")){
                         str=str+"}";
@@ -201,7 +204,8 @@ public class Plot_domain extends MyServlet{
             if(str5.equals("")){
 
             }else{
-                str=str+","+str5.substring(1,str5.length()-1);
+                if(m_info.equals("") && r_info.equals("") && ip_info.equals(""))str=str+str5.substring(1,str5.length()-1);
+                else str=str+","+str5.substring(1,str5.length()-1);
             }
             str+="]}";
         } catch (SQLException e) {
