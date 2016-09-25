@@ -19,7 +19,7 @@ $(document).ready(function () {
         getRegistry(id);
         getMutex(id);
         getSampleDomain(id);
-        gTree("city_tree.json");
+        gTree(BASE_URL + "plot_sample?ID=" + id);
     });
 });
 

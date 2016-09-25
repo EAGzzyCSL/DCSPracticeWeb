@@ -12,7 +12,7 @@ $(document).ready(function () {
         getIPSample(id);
         getDomainList(id);
         getIPDomainRecord(id);
-        gTree("city_tree.json");
+        gTree(BASE_URL + "plot_ip?ID=" + id);
     });
 });
 

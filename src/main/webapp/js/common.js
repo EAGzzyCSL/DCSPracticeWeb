@@ -69,6 +69,12 @@ function gSearch() {
     }
 }
 
+var TYPE_DOMAIN = 1;
+var TYPE_IP = 2;
+var TYPE_FILE = 3;
+var TYPE_WHOIS_NAME = 4;
+var TYPE_WHOIS_MAIL = 5;
+
 function gTree(url) {
     var diameter = $("#tab_content").width();
 
@@ -90,7 +96,7 @@ function gTree(url) {
         .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
     d3.json(url, function (error, root) {
-        if (error) throw error;
+        if (error) return;
 
         var nodes = tree.nodes(root),
             links = tree.links(nodes);
@@ -110,7 +116,17 @@ function gTree(url) {
             });
 
         node.append("circle")
-            .attr("r", 15);
+            .attr("r", function (d) {
+                if (d.type == TYPE_DOMAIN) return 20;
+                else return 12;
+            })
+            .attr("fill", function (d) {
+                if (d.type == TYPE_DOMAIN) return "steelblue";
+                else if (d.type == TYPE_IP) return "cyan";
+                else if (d.type == TYPE_FILE) return "orange";
+                else if (d.type == TYPE_WHOIS_NAME) return "green";
+                else if (d.type == TYPE_WHOIS_MAIL) return "lime";
+            });
 
         node.append("text")
             .attr("dy", ".31em")
@@ -121,12 +137,24 @@ function gTree(url) {
                 return d.x < 180 ? "translate(20)" : "rotate(180)translate(-20)";
             })
             .text(function (d) {
-                return d.name;
+                if (d.type == TYPE_FILE) return "样本";
+                else return d.name;
             });
 
         node.on("click", function (d) {
             $("#modalEntity").modal();
             $("#modalName").text(d.name);
+
+            if (d.type == TYPE_DOMAIN) gHref = "resultDomain.html?domain=" + d.name;
+            else if (d.type == TYPE_IP) gHref = "resultIP.html?ip=" + d.name;
+            else if (d.type == TYPE_FILE) gHref = "resultFile.html?sha256=" + d.name;
+            else gHref = "";
         })
     });
+}
+
+var gHref;
+
+function gJump() {
+    if (gHref != "") open(gHref);
 }
