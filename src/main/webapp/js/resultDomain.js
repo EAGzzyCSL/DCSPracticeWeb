@@ -15,7 +15,7 @@ $(document).ready(function () {
         getDomainList(id);
         getChildrenDomain(id);
         getDomainWhois(id);
-        gTree("city_tree.json");
+        gTree(BASE_URL + "plot_domain?ID=" + id);
     });
 });
 
