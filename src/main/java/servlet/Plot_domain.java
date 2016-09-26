@@ -196,7 +196,7 @@ public class Plot_domain extends MyServlet{
                     if(str4.equals("")){
                         str=str+",\"children\":"+str3+"}";
                     }else{
-                        str=str+",\"children\":["+str3.substring(0,str3.length()-1)+","+str4.substring(1,str4.length())+"}";
+                        str=str+",\"children\":"+str3.substring(0,str3.length()-1)+","+str4.substring(1,str4.length())+"}";
                     }
                 }
             }
