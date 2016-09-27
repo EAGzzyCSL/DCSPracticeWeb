@@ -57,6 +57,9 @@ function gSearch() {
         case "域名":
             location.href = "resultDomain.html?domain=" + gKeyWord;
             break;
+        case "MD5":
+            location.href = "resultFile.html?md5=" + gKeyWord;
+            break;
         case "SHA1":
             location.href = "resultFile.html?sha1=" + gKeyWord;
             break;

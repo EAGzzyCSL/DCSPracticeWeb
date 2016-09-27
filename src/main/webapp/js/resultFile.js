@@ -1,10 +1,12 @@
 $(document).ready(function () {
+    var md5 = $_GET["md5"];
     var sha1 = $_GET["sha1"];
     var sha256 = $_GET["sha256"];
-    if (typeof (sha1) != "undefined") $("#title").text(sha1);
+    if (typeof (md5) != "undefined") $("#title").text(md5);
+    else if (typeof (sha1) != "undefined") $("#title").text(sha1);
     else if (typeof (sha256) != "undefined") $("#title").text(sha256);
 
-    $.post(BASE_URL + "get_searchID", {sha1: sha1, sha256: sha256}, function (data) {
+    $.post(BASE_URL + "get_searchID", {md5: md5, sha1: sha1, sha256: sha256}, function (data) {
         if (data == "") {
             alert("暂无记录");
             return;
